@@ -1,4 +1,4 @@
-# Java--WORDAPP
+# Java--WordAPP
 Java期末大作业，做一个考研单词记忆程序
 <br>用时两天半，接近24小时，GUI、线程、通信，学一点做一点
 <br>src是源码，这个版本有个bug就是要每次先运行server才能打开游戏界面。
