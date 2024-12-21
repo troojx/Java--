@@ -2,15 +2,12 @@ package frame;
 
 import util.FileOperateForCustomer;
 import util.GUIUtil;
-import util.TimeCounterThread;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.sql.ClientInfoStatus;
 
 public class GamePanel extends JPanel {
     //protected:当前类和所有子类都可以访问
@@ -24,7 +21,7 @@ public class GamePanel extends JPanel {
     protected ObjectInputStream objectInputStream;   //接受客户端数据
     protected FileOperateForCustomer fileOperateForCustomer = new FileOperateForCustomer();
 
-    private boolean canRun = true;
+    //private boolean canRun = true;
     protected static boolean checkFlag;
     private int timeLeft = 10;//剩余时间
     protected boolean TimerIsZero = false;
@@ -67,11 +64,10 @@ public class GamePanel extends JPanel {
         lbTimer.setBounds(timerX, timerY, timerWidth, timerHeight);
 
         try{
-            socket = new Socket("127.0.0.1",9999);
+            socket = new Socket("127.0.0.1",12345);
             objectInputStream = new ObjectInputStream(socket.getInputStream());
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             JOptionPane.showMessageDialog(this,"做好准备！点击确定！");
-
         }catch (Exception e){
             javax.swing.JOptionPane.showMessageDialog(this,"游戏异常退出！服务器未能连接游戏界面！");
             System.exit(0);
@@ -80,8 +76,6 @@ public class GamePanel extends JPanel {
         // 初始化计时器
         initTimer();
         timer.start();
-
-
     }
 
     public void initTimer(){

@@ -16,9 +16,8 @@ public class OperationFrame extends JFrame implements ActionListener{
     private JButton btEgToCh = new JButton("英文选义");
     private JButton btModifyInfo = new JButton("修改个人信息");
     private JButton btExit = new JButton("退出");
-    private static Server server;
-    private Thread serverThread;
 
+    private ModifyDialog modifyDialog = null;
     /********界面初始化*********/
     public OperationFrame() throws Exception {
         this.setLayout(new GridBagLayout()); // 使用 GridBagLayout
@@ -81,7 +80,6 @@ public class OperationFrame extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btChToEg){
             try {
-                //server = new Server();
                 new GameFrameChToEg();
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -89,8 +87,6 @@ public class OperationFrame extends JFrame implements ActionListener{
             }
         }else if (e.getSource() == btEgToCh){
             try {
-                //server = new Server();
-                //startServer();
                 new GameFrameEgToCh();
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -98,14 +94,15 @@ public class OperationFrame extends JFrame implements ActionListener{
             }
         }else if (e.getSource() == btModifyInfo){
             try {
-                new ModifyDialog(this);
+                if (modifyDialog == null || !modifyDialog.isVisible()){
+                    modifyDialog = new ModifyDialog(this);
+                }
             } catch (Exception exception) {
                 exception.printStackTrace();
                 JOptionPane.showMessageDialog(this, "打开修改界面失败！");
             }
         }else if (e.getSource() == btExit){
             JOptionPane.showMessageDialog(this, Conf.name+"记得下次再来背单词哦！");
-
             System.exit(0);
         }
     }

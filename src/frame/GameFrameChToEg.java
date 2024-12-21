@@ -88,6 +88,11 @@ public class GameFrameChToEg extends GamePanel {
 
         frame.setVisible(true); //最后调用
 
+        /**
+         * 创建一个新的线程来运行 Run() 方法是必要的
+         * Swing 的 UI 更新必须在事件分发线程（EDT）上进行。如果在 EDT 上执行长时间运行的任务，会导致 UI 响应缓慢甚至冻结。
+         * 将游戏其放在单独的线程中可以确保 EDT 不被阻塞，保持 UI 的响应性。
+         */
         new Thread(new Runnable() {         //为游戏
             @Override
             public void run() {
@@ -126,7 +131,6 @@ public class GameFrameChToEg extends GamePanel {
         checkFlag = true; //已经完成检查
         notify(); //通知Run方法继续执行
     }
-
 
     public synchronized void Run() throws Exception {
         while (true){
@@ -167,6 +171,4 @@ public class GameFrameChToEg extends GamePanel {
             }
         }
     }
-
-
 }

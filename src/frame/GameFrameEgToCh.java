@@ -139,6 +139,7 @@ public class GameFrameEgToCh extends GamePanel{
                 // System.out.println("跳出死循环");
                 stopTimer();
             } else{   //失败
+                objectOutputStream.writeUTF("0");
                 checkAndHandelFail();
                 frame.dispose();
                 return;      //防止一直死循环执行关闭操作，回到主函数

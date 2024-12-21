@@ -93,7 +93,7 @@ public class ModifyDialog extends JDialog implements ActionListener {
         // 设置对话框的属性
         this.setSize(350, 300);
         GUIUtil.toCenter(this);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setResizable(false);
         this.setVisible(true);
         /**********************增加监听****************************/
